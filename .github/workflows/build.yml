@@ -35,10 +35,13 @@ jobs:
       run: go mod download
 
     - name: Build
-      run: go build -o totp-${{ matrix.platform }} main.go
+      run: go build -o totp-${{ matrix.platform }} -ldflags "-s -w" main.go
     
-    - name: Run
-      run: ./totp-${{ matrix.platform }} 
+    - name: Run - Check Version
+      run: ./totp-${{ matrix.platform }} --version
+
+    - name: Run - Check help
+      run: ./totp-${{ matrix.platform }} --help 
     
     - name: Upload to artifact
       uses: actions/upload-artifact@v2

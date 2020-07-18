@@ -1,6 +1,7 @@
 package main
 
 import (
+	"flag"
 	"fmt"
 	"io/ioutil"
 	"log"
@@ -11,6 +12,21 @@ import (
 )
 
 func main() {
+	help := flag.Bool("help", false, "Help Message")
+	version := flag.Bool("version", false, "Show version")
+
+	flag.Parse()
+
+	if *help {
+		controllers.HandleHelpCommnad()
+		return
+	}
+
+	if *version {
+		controllers.HandleVersionCommand()
+		return
+	}
+
 	usr, err := user.Current()
 	if err != nil {
 		log.Fatal(err.Error())

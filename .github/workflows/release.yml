@@ -6,7 +6,7 @@ on:
 name: Release For platforms
 
 jobs:
-  build-and-release:
+  release:
     runs-on: ubuntu-latest
     
     steps:
@@ -44,9 +44,9 @@ jobs:
         tag_name: ${{ github.ref }}
         release_name: Release ${{ github.ref }}
         body: |
-          Changes in this Release
-          - Added list providers
-          - Added getting single totp
+          Changes in this Release Patch
+          - Added Help and version flags
+          - Tried reducing size of executable
         draft: false
         prerelease: false
     
