@@ -10,7 +10,7 @@ A simple CLI to get your TOTP, a cli replacement for Google Authenticator
 - You can add as many as you want
 ```
 <PROVIDER_1>=<2FA Secret Key>
-<PROVIDER_2>=<<2FA Secret Key>
+<PROVIDER_2>=<2FA Secret Key>
 ```
 - After adding run `totp`
 - Output will like:
@@ -18,3 +18,9 @@ A simple CLI to get your TOTP, a cli replacement for Google Authenticator
 <PROVIDER_1>: <TOTP>
 <PROVIDER_2>: <TOTP>
 ```
+
+- Get a single provider: 
+`totp <PROVIDER_NAME>`
+
+- List added providers: 
+`totp list`

@@ -45,8 +45,8 @@ jobs:
         release_name: Release ${{ github.ref }}
         body: |
           Changes in this Release
-          - First Change
-          - Second Change
+          - Added list providers
+          - Added getting single totp
         draft: false
         prerelease: false
     

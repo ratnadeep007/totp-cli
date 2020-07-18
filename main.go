@@ -6,10 +6,8 @@ import (
 	"log"
 	"os"
 	"os/user"
-	"strings"
-	"time"
 
-	"github.com/pquerna/otp/totp"
+	"theskylab.in/totp-cli/controllers"
 )
 
 func main() {
@@ -25,34 +23,13 @@ func main() {
 	}
 	if len(os.Args) > 1 {
 		providerName := os.Args[1]
+		if providerName == "list" {
+			controllers.ListProviders(envText)
+		}
 		if providerName != "" {
-			envs := strings.Split(string(envText), "\n")
-			for _, env := range envs {
-				envSplit := strings.Split(env, "=")
-				secret := envSplit[1]
-				provider := envSplit[0]
-				if strings.ToLower(provider) == strings.ToLower(providerName) {
-					token := getToken(string(secret))
-					printToken(string(envSplit[0]), token)
-				}
-			}
+			controllers.GetOneToken(string(envText), providerName)
 			return
 		}
 	}
-	envs := strings.Split(string(envText), "\n")
-	for _, env := range envs {
-		envSplit := strings.Split(env, "=")
-		secret := envSplit[1]
-		token := getToken(string(secret))
-		printToken(string(envSplit[0]), token)
-	}
-}
-
-func getToken(secret string) string {
-	token, _ := totp.GenerateCode(secret, time.Now())
-	return token
-}
-
-func printToken(provider string, token string) {
-	fmt.Printf("%s: %s\n", provider, token)
+	controllers.ListAllTokens(envText)
 }
