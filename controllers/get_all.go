@@ -10,10 +10,12 @@ import (
 func ListAllTokens(envText []byte) {
 	envs := strings.Split(string(envText), "\n")
 	for _, env := range envs {
-		envSplit := strings.Split(env, "=")
-		secret := envSplit[1]
-		provider := envSplit[0]
-		token := utils.GetToken(string(secret))
-		utils.PrintToken(provider, token)
+		if env != "" {
+			envSplit := strings.Split(env, "=")
+			secret := envSplit[1]
+			provider := envSplit[0]
+			token := utils.GetToken(string(secret))
+			utils.PrintToken(provider, token)
+		}
 	}
 }

@@ -45,8 +45,7 @@ jobs:
         release_name: Release ${{ github.ref }}
         body: |
           Changes in this Release Patch
-          - Added Help and version flags
-          - Tried reducing size of executable
+          - Fixed bug with new line ending
         draft: false
         prerelease: false
     
